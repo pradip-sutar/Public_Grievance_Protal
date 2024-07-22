@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.http import HttpResponseNotFound, Http404, HttpResponseRedirect, JsonResponse
 from django.views.generic import TemplateView, CreateView, UpdateView, View
 from django.contrib.auth.views import LoginView
-
+from accounts.models import User
 
 from redressal.models import SubCategory
 
@@ -13,15 +13,55 @@ import datetime
 from .constants import STATUS_DISPLAY_CONVERTER, STATUS_COLOR_CONVERTER
 from .decorators import is_owner_of_grievance
 from .forms import NewGrievanceForm, NewReplyForm, RatingForm
-from .models import DayToken, Grievance, Reply, Notification, Rating
+from .models import *
 from .filters import StudentGrievanceFilter, FilteredListView
 from redressal.helpers import get_redressal_body_members
-
+from django.contrib.auth import login
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-
+from django.contrib import messages
 
 def signup_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        category = request.POST.get('category')
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+        mobile = request.POST.get('mobile')
+        address = request.POST.get('address')
+        pin = request.POST.get('pin')
+        aadhaar = request.POST.get('aadhaar')
+
+        # Basic validation
+        if not username or not email or not password1 or not password2:
+            messages.error(request, "All fields are required.")
+        elif password1 != password2:
+            messages.error(request, "Passwords do not match.")
+        else:
+            # Create the user
+            try:
+                user = User.objects.create_user(username=username, email=email, password=password1,
+                                                first_name=first_name, last_name=last_name, designation=category)
+                user.save()
+
+                # Create registration details
+                registration = Registration.objects.create(
+                    user=user,
+                    mobile=mobile,
+                    address=address,
+                    pin=pin,
+                    aadhaar=aadhaar
+                )
+                registration.save()
+
+                login(request, user)
+                return redirect('dashboard')  # Redirect to a page after sign-up
+            except Exception as e:
+                messages.error(request, f"Error: {e}")
+
     return render(request, 'studentg/signup.html')
 
 

@@ -20,7 +20,7 @@ from .constants import DesignationConstants, TempDesignationConstants
 class User(DesignationConstants, AbstractUser):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    designation = models.CharField(max_length=5, choices=DesignationConstants.DESIGNATION_CHOICES)
+    designation = models.CharField(max_length=5, choices=DesignationConstants.DESIGNATION_CHOICES,null=True, blank=True)
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
     def get_designation_object(self):

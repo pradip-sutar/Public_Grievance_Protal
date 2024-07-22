@@ -38,6 +38,38 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-group mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <label for="state">State</label>
+                                <select id="state" class="form-control" name="state">
+                                    <!-- Options will be loaded dynamically -->
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="district">District</label>
+                                <select id="district" class="form-control" name="district">
+                                    <!-- Options will be loaded dynamically -->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <label for="sub_district">Sub-District</label>
+                                <select id="sub_district" class="form-control" name="sub_district">
+                                    <!-- Options will be loaded dynamically -->
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="village">Village</label>
+                                <select id="village" class="form-control" name="village">
+                                    <!-- Options will be loaded dynamically -->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group mb-3 ">
                         {{ form.subject.label_tag }}
                         {% render_field form.subject class="form-control" placeholder="Subject" %}
@@ -88,4 +120,60 @@
 {% endblock page_content %}
 {% block javascript %}
 <script src="{% static 'studentg/js/load_subcat.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Load the JSON file
+        $.getJSON("{% static 'Odisha.json' %}", function(data) {
+            // Populate state dropdown
+            $('#state').append('<option value="">Select State</option>');
+            $('#state').append('<option value="Odisha">Odisha</option>'); // You can add more states if needed
+
+            // Populate district dropdown based on state selection
+            $('#state').change(function() {
+                var selectedState = $(this).val();
+                $('#district').empty();
+                $('#sub_district').empty();
+                $('#village').empty();
+                if (selectedState === "Odisha") {
+                    $('#district').append('<option value="">Select District</option>');
+                    $.each(data.districts, function(index, district) {
+                        $('#district').append('<option value="' + district.district + '">' + district.district + '</option>');
+                    });
+                }
+            });
+
+            // Populate sub-district dropdown based on district selection
+            $('#district').change(function() {
+                var selectedDistrict = $(this).val();
+                $('#sub_district').empty();
+                $('#village').empty();
+                $.each(data.districts, function(index, district) {
+                    if (district.district === selectedDistrict) {
+                        $('#sub_district').append('<option value="">Select Sub-District</option>');
+                        $.each(district.subDistricts, function(index, subDistrict) {
+                            $('#sub_district').append('<option value="' + subDistrict.subDistrict + '">' + subDistrict.subDistrict + '</option>');
+                        });
+                    }
+                });
+            });
+
+            // Populate village dropdown based on sub-district selection
+            $('#sub_district').change(function() {
+                var selectedSubDistrict = $(this).val();
+                $('#village').empty();
+                $.each(data.districts, function(index, district) {
+                    $.each(district.subDistricts, function(index, subDistrict) {
+                        if (subDistrict.subDistrict === selectedSubDistrict) {
+                            $('#village').append('<option value="">Select Village</option>');
+                            $.each(subDistrict.villages, function(index, village) {
+                                $('#village').append('<option value="' + village + '">' + village + '</option>');
+                            });
+                        }
+                    });
+                });
+            });
+        });
+    });
+</script>
 {% endblock javascript %}

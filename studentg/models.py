@@ -9,6 +9,17 @@ from django_hosts.resolvers import reverse
 
 
 # Concurrency controlled generation of tokens Singleton table
+
+class Registration(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    mobile = models.CharField(max_length=15, blank=True, null=True)
+    address = models.TextField(blank=True, null=True)
+    pin = models.CharField(max_length=10, blank=True, null=True)
+    aadhaar = models.CharField(max_length=12, blank=True, null=True)
+
+    def __str__(self):
+        return f"Registration for {self.user.username}"
+
 class DayToken(models.Model):
     counter = models.IntegerField(default=0)
     last_update = models.DateField(auto_now_add=True)
@@ -31,8 +42,16 @@ class DayToken(models.Model):
         super(DayToken, self).save(*args, **kwargs)
         from django.db import models
 
+class Department(models.Model):
+    name = models.CharField(max_length=255)
+    def __str__(self):
+        return self.name
 
-
+class Dept_Category(models.Model):
+    name = models.CharField(max_length=255)
+    department_id = models.ForeignKey(Department,on_delete=models.CASCADE)
+    def __str__(self):
+        return self.name
 
 class Grievance(StatusConstants, models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='grievances')
@@ -45,14 +64,22 @@ class Grievance(StatusConstants, models.Model):
     message = models.TextField(max_length=1000)
     subject = models.CharField(max_length=255)
     image = models.ImageField(null=True, blank=True, upload_to='images/')
-    STATE = 1
+    # category = models.ForeignKey(Department,on_delete=models.CASCADE)
+    # sub_category = models.ForeignKey(Dept_Category, on_delete=models.CASCADE, null=True, blank=True)
+    state = models.CharField(max_length=255)
+    district = models.CharField(max_length=255)
+    block = models.CharField(max_length=255)
+    village = models.CharField(max_length=255)
+    UNIVERSITY = 1
+    INSTITUTE = 2
+    DEPARTMENT = 3
     CATEGORY_CHOICES = [
-        (STATE, 'State')
-        
+        (UNIVERSITY, 'University'),
+        (INSTITUTE, 'Institute'),
+        (DEPARTMENT, 'Department'),
     ]
     category = models.PositiveSmallIntegerField(choices=CATEGORY_CHOICES)
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
-
     class Meta:
         unique_together = (("date", "daytoken"),)
         ordering = ['-last_update']
