@@ -64,22 +64,13 @@ class Grievance(StatusConstants, models.Model):
     message = models.TextField(max_length=1000)
     subject = models.CharField(max_length=255)
     image = models.ImageField(null=True, blank=True, upload_to='images/')
-    # category = models.ForeignKey(Department,on_delete=models.CASCADE)
-    # sub_category = models.ForeignKey(Dept_Category, on_delete=models.CASCADE, null=True, blank=True)
+    category = models.ForeignKey(Department,on_delete=models.CASCADE)
+    sub_category = models.ForeignKey(Dept_Category, on_delete=models.CASCADE, null=True, blank=True)
     state = models.CharField(max_length=255)
     district = models.CharField(max_length=255)
     block = models.CharField(max_length=255)
     village = models.CharField(max_length=255)
-    UNIVERSITY = 1
-    INSTITUTE = 2
-    DEPARTMENT = 3
-    CATEGORY_CHOICES = [
-        (UNIVERSITY, 'University'),
-        (INSTITUTE, 'Institute'),
-        (DEPARTMENT, 'Department'),
-    ]
-    category = models.PositiveSmallIntegerField(choices=CATEGORY_CHOICES)
-    sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
+    
     class Meta:
         unique_together = (("date", "daytoken"),)
         ordering = ['-last_update']
