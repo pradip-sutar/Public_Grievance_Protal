@@ -223,28 +223,27 @@ class ViewGrievance(View):
 
 @method_decorator(login_required, name="dispatch")
 class LoadSubcategories(TemplateView):
-    template_name = 'studentg/subcat_options.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    def get(self, request, *args, **kwargs):
+        category = request.GET.get('category')
+        if not category:
+            return JsonResponse({'error': 'Category not provided'}, status=400)
+        
         try:
-            category = int(self.request.GET.get('category'))
-        except:
-            raise Http404()
-        redressal_body = self.request.user.get_redressal_body().department
-        if category != Grievance.DEPARTMENT:
-            redressal_body = redressal_body.institute
-            if category != Grievance.INSTITUTE:
-                redressal_body = redressal_body.university
-                if category != Grievance.UNIVERSITY:
-                    raise Http404()
-        redressal_body = redressal_body.redressal_body
-        subcategories = SubCategory.objects.filter(
-            redressal_body=redressal_body).order_by('sub_type')
-        context['subcategories'] = subcategories
-        return context
+            category = int(category)
+        except ValueError:
+            return JsonResponse({'error': 'Invalid category value'}, status=400)
 
+        try:
+            # Fetch the Dept_Category data based on the category
+            dept_categories = Dept_Category.objects.filter(department_id=category)
+            if not dept_categories.exists():
+                return JsonResponse({'error': 'No categories found'}, status=404)
 
+            dept_categories_data = list(dept_categories.values('id', 'name'))
+            return JsonResponse({'dept_categories': dept_categories_data})
+        except Dept_Category.DoesNotExist:
+            return JsonResponse({'error': 'No categories found'}, status=404)
+        
 @method_decorator(login_required, name="dispatch")
 class AllGrievances(FilteredListView):
     template_name = 'studentg/all_grievances.html'

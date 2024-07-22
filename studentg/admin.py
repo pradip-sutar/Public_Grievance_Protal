@@ -8,3 +8,10 @@ admin.site.register(Notification)
 class RegistrationAdmin(admin.ModelAdmin):
     list_display = ['user', 'mobile', 'address', 'pin', 'aadhaar']
     
+@admin.register(Department)
+class RegistrationAdmin(admin.ModelAdmin):
+    list_display = ['name']
+
+@admin.register(Dept_Category)
+class DeptCategoryAdmin(admin.ModelAdmin):
+    list_display = ['name', 'department_id']
