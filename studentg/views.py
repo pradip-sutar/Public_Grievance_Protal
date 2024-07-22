@@ -21,6 +21,10 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 
 
+def signup_view(request):
+    return render(request, 'studentg/signup.html')
+
+
 class HomeView(LoginView):
     template_name = 'studentg/home.html'
 

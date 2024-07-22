@@ -57,5 +57,3 @@ class SignupView(View):
             return render(request, 'link_expired.html')
         return super(SignupView, self).dispatch(request, *args, **kwargs)
 
-def signup_view(request):
-    return render(request, 'accounts/SignupN.html')

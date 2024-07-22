@@ -35,7 +35,6 @@ urlpatterns = [
 
     path('reset/', include(reset_patterns)),
 
-    path('signup/', views.signup_view, name='signup'),
 
     # path('settings/password/', include(change_password_patterns)),
 ]

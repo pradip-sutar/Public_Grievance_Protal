@@ -53,6 +53,8 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('dashboard/', include(dashpatterns)),
     path('stats/status-chart/', views.overall_status_stats_chart, name="overall_status_chart"),
+    path('signup/', views.signup_view, name='signup'),
+
     # path('admin/', admin.site.urls),
     # path('contact/', views.contact,name="contact"),
     # path('about_us/',views.about_us,name="about_us"),
