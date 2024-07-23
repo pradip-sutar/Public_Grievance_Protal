@@ -52,7 +52,7 @@ class User(DesignationConstants, AbstractUser):
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     redressal_body = models.ForeignKey(RedressalBody, on_delete=models.CASCADE)
-    rollno = models.IntegerField()
+    # rollno = models.IntegerField()
 
     # class Meta:
     #     unique_together = (("redressal_body", "rollno"),)

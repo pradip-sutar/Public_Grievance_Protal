@@ -101,9 +101,9 @@ class ViewGrievance(View):
         grievance = context['grievance']
         reply_form = NewReplyForm()
         update_form = GrievanceUpdateForm(instance=grievance)
-        user_body_object = request.user.get_redressal_body().get_body_object()
-        if user_body_object.IS_SUB_BODY:
-            escalation_form = GrievanceEscalationForm(redressal_body=user_body_object.get_super_body(),
+        user_body_object = request.user.get_redressal_body()
+        if user_body_object:
+            escalation_form = GrievanceEscalationForm(redressal_body=user_body_object,
                                                       instance=grievance, prefix='escalation')
             context['escalation_form'] = escalation_form
         context['reply_form'] = reply_form
@@ -115,29 +115,34 @@ class ViewGrievance(View):
         grievance = context['grievance']
         reply_form = NewReplyForm(request.POST)
         update_form = GrievanceUpdateForm(request.POST, instance=grievance)
-        user_body_object = request.user.get_redressal_body().get_body_object()
-        if user_body_object.IS_SUB_BODY:
-            escalation_form = GrievanceEscalationForm(request.POST, redressal_body=user_body_object.get_super_body(),
-                                                      instance=grievance, prefix='escalation')
-            if escalation_form.is_valid():
-                grievance = escalation_form.save(commit=False)
-                category_escalator = {
-                    Grievance.DEPARTMENT: Grievance.INSTITUTE,
-                    Grievance.INSTITUTE: Grievance.DEPARTMENT
-                }
-                grievance.category = category_escalator[grievance.category]
-                grievance.redressal_body = user_body_object.get_super_body()
-                grievance.status = Grievance.REVIEW
-                grievance.save()
-                return redirect('all_grievances')
-            context['escalation_form'] = escalation_form
+        user_body_object = request.user.get_redressal_body()
+        print(user_body_object)
+        # if user_body_object:
+        #     escalation_form = GrievanceEscalationForm(request.POST, redressal_body=user_body_object,
+        #                                               instance=grievance, prefix='escalation')
+        #     if escalation_form.is_valid():
+        #         grievance = escalation_form.save(commit=False)
+        #         # category_escalator = {
+        #         #     Grievance.DEPARTMENT: Grievance.INSTITUTE,
+        #         #     Grievance.INSTITUTE: Grievance.DEPARTMENT
+        #         # }
+        #         # grievance.category = category_escalator[grievance.category]
+        #         # grievance.redressal_body = user_body_object.get_super_body()
+        #         grievance.status = Grievance.REVIEW
+        #         grievance.save()
+        #         return redirect('all_grievances')
+        #     context['escalation_form'] = escalation_form
         is_reply = False
         if reply_form.is_valid():
+            print("Reply form is valid")
             reply = reply_form.save(commit=False)
             reply.user = request.user
             reply.grievance = grievance
             reply.save()
+            print("Reply saved successfully")
             is_reply = True
+        else:
+            print("Reply form errors:", reply_form.errors)
         if update_form.is_valid():
             old_status = grievance.status
             grievance = update_form.save()

@@ -5,7 +5,7 @@ from django.http import HttpResponseNotFound, Http404, HttpResponseRedirect, Jso
 from django.views.generic import TemplateView, CreateView, UpdateView, View
 from django.contrib.auth.views import LoginView
 from accounts.models import User
-
+from accounts.models import Student
 from redressal.models import SubCategory
 
 import datetime
@@ -41,13 +41,25 @@ def signup_view(request):
         elif password1 != password2:
             messages.error(request, "Passwords do not match.")
         else:
-            # Create the user
             try:
-                user = User.objects.create_user(username=username, email=email, password=password1,
-                                                first_name=first_name, last_name=last_name, designation=category)
+                user = User.objects.create_user(
+                    username=username,
+                    email=email,
+                    password=password1,
+                    first_name=first_name,
+                    last_name=last_name,
+                    designation=category
+                )
                 user.save()
-
-                # Create registration details
+                if category == 'STU':
+                    # Get or create the redressal body
+                    redressal_body, created = RedressalBody.objects.get_or_create(
+                        name='department',body_type=RedressalBody.DEPARTMENT
+                    )
+                    Student.objects.create(
+                        user=user,
+                        redressal_body=redressal_body,
+                    )
                 registration = Registration.objects.create(
                     user=user,
                     mobile=mobile,
@@ -56,15 +68,13 @@ def signup_view(request):
                     aadhaar=aadhaar
                 )
                 registration.save()
-
                 login(request, user)
-                return redirect('dashboard')  # Redirect to a page after sign-up
+                return redirect('dashboard')
             except Exception as e:
                 messages.error(request, f"Error: {e}")
 
     return render(request, 'studentg/signup.html')
-
-
+    
 class HomeView(LoginView):
     template_name = 'studentg/home.html'
 
@@ -89,14 +99,14 @@ def grievance_save_helper(request, grievance):
         grievance.status = Grievance.DRAFT
     elif 'true_submit' in request.POST:
         grievance.status = Grievance.REVIEW
-    redressal_body = request.user.get_redressal_body().department
-    if grievance.category != Grievance.DEPARTMENT:
-        redressal_body = redressal_body.institute
-        if grievance.category != Grievance.INSTITUTE:
-            redressal_body = redressal_body.university
-            if grievance.category != Grievance.UNIVERSITY:
-                raise Http404()
-    grievance.redressal_body = redressal_body.redressal_body
+    redressal_body = request.user.get_redressal_body()
+    # if grievance.category != Grievance.DEPARTMENT:
+    #     redressal_body = redressal_body.institute
+    #     if grievance.category != Grievance.INSTITUTE:
+    #         redressal_body = redressal_body.university
+    #         if grievance.category != Grievance.UNIVERSITY:
+    #             raise Http404()
+    grievance.redressal_body = redressal_body
 
 
 def grievance_notification_helper(grievance):
@@ -112,6 +122,7 @@ def grievance_notification_helper(grievance):
 class CreateGrievance(CreateView):
     model = Grievance
     form_class = NewGrievanceForm
+    print("Creating",form_class)
     template_name = 'studentg/add_grievance.html'
     success_url = reverse_lazy('dashboard')
 
@@ -233,16 +244,12 @@ class LoadSubcategories(TemplateView):
         except ValueError:
             return JsonResponse({'error': 'Invalid category value'}, status=400)
 
-        try:
-            # Fetch the Dept_Category data based on the category
-            dept_categories = Dept_Category.objects.filter(department_id=category)
-            if not dept_categories.exists():
-                return JsonResponse({'error': 'No categories found'}, status=404)
-
-            dept_categories_data = list(dept_categories.values('id', 'name'))
-            return JsonResponse({'dept_categories': dept_categories_data})
-        except Dept_Category.DoesNotExist:
+        dept_categories = Dept_Category.objects.filter(department_id=category)
+        if not dept_categories.exists():
             return JsonResponse({'error': 'No categories found'}, status=404)
+
+        dept_categories_data = list(dept_categories.values('id', 'name'))
+        return JsonResponse({'subcategories': dept_categories_data})
         
 @method_decorator(login_required, name="dispatch")
 class AllGrievances(FilteredListView):
