@@ -27,8 +27,17 @@
             <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
                 class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
+                
+                <div class="minister margin-end" style="margin-left:311px;">
+                    <a class="float-left " href="" title="Shri Mohan Charan Majhi">Shri Mohan Charan Majhi <br>
+                      <span>Hon'ble Chief Minister</span></a>
+                      <img src="static/assets/img/cheif.jpg" width="80" height="80" alt="Shri Mohan Charan Majhi" title="Shri Mohan Charan Majhi" typeof="Image">
 
+          
+          
+           </div>
 
+        {% comment %} <section>
             <div id="navbarSupportedContent" class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto align-items-lg-center align-items-md-start">
                     <li class="nav-item active"><a href="#" class="nav-link  font-weight-bold">Home</a></li>
@@ -41,14 +50,15 @@
                     <li class="nav-item"><a href="{% url 'home' %}#about" class="nav-link  ">About</a></li>
                     <li class="nav-item dropdown mr-2 d-none d-lg-block">
                         <select onchange="doGTranslate(this);" style="border-radius: 5px; padding: 8px 16px !important; ::ms-expand{ display: none}; -webkit-appearance: none;
-    -moz-appearance: none;
-    text-indent: 1px;
-    text-overflow: ''; border: none; cursor: pointer; background-color: lightgrey">
+                                -moz-appearance: none;
+                                text-indent: 1px;
+                                text-overflow: ''; border: none; cursor: pointer; background-color: lightgrey">
                             <option class="lang notranslate" value="en|en">English</option>
                             <option class="lang notranslate" value="en|or">ଓଡ଼ିଆ</option>
                             <option class="lang notranslate" value="en|hi">हिन्दी</option>   
                         </select>
                     </li>
+                </section> {% endcomment %}
                     <li class="nav-item dropdown">
                         <a class="nav-link d-none" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
@@ -111,6 +121,15 @@
     </div>
 </header>
 
+<style>
+    .container {
+        text-align: right;
+    }
+
+    .right-div {
+        display: inline-block;
+    }
+</style>
 
 <style type="text/css">
     <!--
