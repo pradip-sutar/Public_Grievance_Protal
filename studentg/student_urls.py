@@ -15,8 +15,8 @@ Including another URLconf
 
 """
 from django.contrib import admin
-from django.urls import path, include
-
+from django.urls import path, include, reverse_lazy
+from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -54,6 +54,7 @@ urlpatterns = [
     path('dashboard/', include(dashpatterns)),
     path('stats/status-chart/', views.overall_status_stats_chart, name="overall_status_chart"),
     path('signup/', views.signup_view, name='signup'),
+    path('logout/', auth_views.LogoutView.as_view(next_page=reverse_lazy('home')), name="logout"),
 
     # path('admin/', admin.site.urls),
     # path('contact/', views.contact,name="contact"),
