@@ -7,7 +7,7 @@ from django.contrib.auth.views import LoginView
 from accounts.models import User
 from accounts.models import Student
 from redressal.models import SubCategory
-from django.contrib.auth import logout
+from django.contrib.auth import logout as auth_logout
 import datetime
 
 from .constants import STATUS_DISPLAY_CONVERTER, STATUS_COLOR_CONVERTER
@@ -22,7 +22,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 def logout(request):
-    logout(request.user)
+    auth_logout(request)
     return redirect('home')
 
 def signup_view(request):
