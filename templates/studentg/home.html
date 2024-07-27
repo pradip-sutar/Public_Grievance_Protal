@@ -1,0 +1,458 @@
+{% extends 'common/home_base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block page_title %}Public Grievance Portal - Govt. of OD{% endblock page_title %}
+{% block partial_navbar %}
+{% include "studentg/includes/partial_navbar.html" %}
+{% endblock %}
+{% block page_content %}
+<div class="container mt-lg-5 mt-5 pt-5">
+    <div class="row mb-4 d-none d-lg-block">
+        <div class="col">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner" style="border-radius: 15px">
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="{% static 'assets/img/CM1.png' %}"
+                            alt="First slide" height="250" style="object-fit: cover ; object-position: top;">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Got any grievances?</h5>
+                            {% if not request.user.is_authenticated %}
+                            <div class="row justify-content-center">
+                                <div class="col" style="">
+                                    <a href="{% url 'home' %}#login">
+                                        <button class="px-3 py-2"
+                                            style=" border-radius: 5px; border: none; background-color:white; color: black; opacity: 0.7;">
+                                            <i style="font-size: xx-large" class="fa fa-sign-in"
+                                                aria-hidden="true"></i><br>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;Login&nbsp;&nbsp;&nbsp;&nbsp;
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class="row justify-content-center">
+                                <div class="col" style="text-align: right">
+                                    <a href="{% url 'add_grievance' %}">
+                                        <button class="px-3 py-2"
+                                            style=" border-radius: 5px; border: none; background-color:black; color: white; opacity: 0.7;">
+                                            <i style="font-size: xx-large" class="fa fa-comments-o"
+                                                aria-hidden="true"></i><br>
+                                            Lodge Grievance
+                                        </button>
+                                    </a>
+                                </div>
+                                <div class="col" style="text-align: left">
+                                    {#                                    TODO#}
+                                    <a href="{% url 'all_grievances' %}">
+                                        <button class="px-3 py-2"
+                                            style=" border-radius: 5px; border: none; background-color:white ; color: black; opacity: 0.7;">
+                                            <i style="font-size: xx-large" class="fa fa-map-marker"
+                                                aria-hidden="true"></i><br>
+                                            Track Grievance
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endif %}
+                            <br>
+                        </div>
+                    </div>
+                    {% load static %}
+<div class="carousel-item">
+    <img class="d-block w-100" src="{% static 'assets/img/CM2.png' %}" alt="Second slide" height="250" style="object-fit: cover; object-position: top;">
+    <div class="carousel-caption d-none d-md-block">
+        {% comment %} <h5>Over 10,300 grievances were resolved in the previous month!</h5> {% endcomment %}
+        <br>
+        <br>
+    </div>
+</div>
+
+                    
+<div class="carousel-item">
+    <img class="d-block w-100"
+         src="{% static 'assets/img/CM3.png' %}"
+         alt="Third slide" height="250"
+         style="object-fit: cover; object-position: top;">
+    <div class="carousel-caption d-none d-md-block">
+        <h5>Our average response time is 24 hours!</h5>
+        <br>
+        <br>
+    </div>
+</div>
+
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    {#    <div class="row mb-4" hidden>#}
+    {#        <div class="col">#}
+    {#            <img style="width: 100%; border-radius: 5px" src="{% static 'assets/img/SIH%20-%20SGRP.png' %}">#}
+    {#        </div>#}
+    {#    </div>#}
+    <div class="row">
+        <div class="col-lg-7 col-12">
+            <div class="card-columns" style="column-count: 1">
+                <div class="card-custom p-4 mb-4  d-block d-lg-none    ">
+                    <div class="card-block">
+                        <div class="row justify-content-center">
+                            <h5 class="card-custom-title" style="text-transform: uppercase">Got any grievances?</h5>
+                        </div>
+                        <div class="row mb-2 justify-content-center">
+                            <h6 class="text-muted">Govt. are there for you!</h6>
+                        </div>
+                        {% if not request.user.is_authenticated %}
+                        <div class="row justify-content-center">
+                            <div class="col" style="">
+                                <a href="{% url 'home' %}#login">
+                                    <button class="px-3 py-2"
+                                        style=" border-radius: 5px; border: none; background-color:#252766; color: white; opacity: 0.7;">
+                                        <i style="font-size: xx-large" class="fa fa-sign-in" aria-hidden="true"></i><br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;Login&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="row justify-content-center">
+                            <div class="col" style="text-align: right">
+                                <a href="{% url 'add_grievance' %}">
+                                    <button class="px-3 py-2"
+                                        style=" border-radius: 5px; border: none; background-color:#252766; color: white; opacity: 0.7;">
+                                        <i style="font-size: xx-large" class="fa fa-comments-o"
+                                            aria-hidden="true"></i><br>
+                                        Lodge Grievance
+                                    </button>
+                                </a>
+                            </div>
+                            <div class="col" style="text-align: left">
+                                {#                                    TODO#}
+                                <a href="{% url 'all_grievances' %}">
+                                    <button class="px-3 py-2"
+                                        style=" border-radius: 5px; border: 1px solid #252766; background-color:white ; color: #252766; opacity: 0.7;">
+                                        <i style="font-size: xx-large" class="fa fa-map-marker"
+                                            aria-hidden="true"></i><br>
+                                        Track Grievance
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <div style="text-align: center" class=" my-3 px-lg-3 " hidden>
+                            <p>Already submitted? Login</p>
+                        </div>
+
+                    </div>
+                </div>
+                {% if not request.user.is_authenticated %}
+                <span class="jump-link" id="login"></span>
+                <div class="card-custom p-4 mb-4 d-lg-none">
+
+                    <div class="card-block">
+                        {% if form.non_field_errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {% for error in form.non_field_errors %}
+                            <p{% if forloop.last %} class="mb-0" {% endif %}>{{ error }}</p>
+                                {% endfor %}
+                        </div>
+                        {% endif %}
+                        <form method="POST">
+                            {% csrf_token %}
+                            {% for hidden in form.hidden_fields %}
+                            {{ hidden }}
+                            {% endfor %}
+                            <div class="row justify-content-center">
+                                <h5 class="card-custom-title " style="text-transform: uppercase">Already Registered?
+                                </h5>
+                            </div>
+                            <div class="row mb-2 justify-content-center" hidden>
+                                <h6 class="text-muted">We are there for you!</h6>
+                            </div>
+                            <h5 class="mt-2" style="text-transform: uppercase; text-align: center" hidden>
+                                Login</h5>
+                            <h6 class="mb-4 mt-1 text-muted" style="text-align: center">Please login to access
+                                your
+                                dashboard</h6>
+                            <div class="input-group mb-3 px-lg-3">
+                                {% render_field form.username id="id_username_small" class="form-control" placeholder="Enter your Username" aria-label="Username" aria-describedby="basic-addon1" %}
+                                {#                                <input type="email" class="form-control" placeholder="Enter your ID"#}
+                                {#                                                     aria-label="Username"#}
+                                {#                                                     aria-describedby="basic-addon1">#}
+                            </div>
+                            <div class="input-group mb-3 px-lg-3">
+                                {% render_field form.password id="id_password_small" class="form-control" placeholder="Enter your Password" aria-label="Password" aria-describedby="basic-addon1" %}
+                                {#                                    <input type="password" class="form-control" placeholder="Enter your Password"#}
+                                {#                                           aria-label="Username"#}
+                                {#                                           aria-describedby="basic-addon1">#}
+                            </div>
+                            <div style="text-align: center" class=" mb-3 px-lg-3">
+                                <button type="submit" class="btn"
+                                    style="width: 100%;color:white!important;background-color: #252766 !important; ">Login</button>
+                            </div>
+                            <div style="text-align: center" class=" px-lg-3 ">
+                                <a href="{% url 'password_reset' %}" class="text-muted">
+                                    <p>Forgot Password?</p>
+                                </a>
+                            </div>
+                            {% comment %} <div style="" class="text-muted my-3 px-lg-3 ">
+                                <p>If you are a student, please note:</p>
+                                <ul class="text-muted">
+                                    <li>
+                                        If you don't have login credentials, please contact your department
+                                        staff.
+                                        You will receive them via email.
+                                    </li>
+                                </ul>
+                            </div> {% endcomment %}
+                        </form>
+                    </div>
+                </div>
+                {% endif %}
+                <div class="card-custom p-4 mb-4">
+                    <span class="jump-link" id="process"></span>
+                    <div class="card-block">
+                        <h5 class="mt-2 card-custom-title" style="text-transform: uppercase; text-align: center">THE
+                            PROCESS</h5>
+                        <h6 class="mb-4 mt-1 text-muted" style="text-align: center">Get your grievances resolved in
+                            just 5 steps!</h6>
+                            <p class="card-text" style="text-align: center">
+                                <img src="{% static 'assets/img/Process-6N.png' %}" height="450" alt="process">
+                            </p>
+                            
+                        <p class="mb-0 mt-3 card-text text-muted" style="">
+                            For verification purpose, we need the following documents:<br>
+                        <ul class="text-muted small">
+                            <li> Adhara card-custom (Front and back Image)</li>
+                            <li> Print Out of Grievance Application</li>
+                        </ul>
+                        <p class="mb-3 mt-2 card-text text-muted">
+                            We will try our best to resolve your grievances as soon as possible.
+                        </p>
+                        <a href="https://www.facebook.com/CMO.Odisha" hidden>Learn More</a>
+                    </div>
+                </div>
+
+                <div class="card-custom p-4 mb-4">
+                    <span class="jump-link" id="faq"></span>
+                    <div class="card-block">
+                        <h5 class="card-custom-title mb-4">FAQs</h5>
+                        <!-- Begin Accordion Snippet -->
+                        <div class="so-accordion-wrapper">
+                            <div class="so-tab">
+                                <input id="so-tab-1" type="checkbox" name="tabs">
+                                <label for="so-tab-1">What is the purpose of public Grievance
+                                    Portal?</label>
+                                <div class="so-tab-content">
+                                    <p class="text-muted">
+                                        The purpose of the Public Grievance Portal is to provide a platform for citizens to lodge complaints related to public services, ensuring their issues are addressed efficiently. It promotes transparency and accountability in the grievance resolution process. The portal facilitates direct communication between the public and government authorities for swift and effective problem-solving.
+                                    </p>
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="so-tab"><input id="so-tab-3" type="checkbox" name="tabs"> <label
+                                    for="so-tab-3">What
+                                    is the objective of Public Grievance
+                                    Portal?</label>
+                                <div class="so-tab-content">
+                                    <p class="text-muted">The objective of the Public Grievance Portal is to facilitate the efficient redressal of public complaints related to various services, ensuring transparency and accountability. It aims to streamline the grievance resolution process and enhance communication between citizens and government authorities. The portal ensures timely and effective solutions to public issues.
+                                    </p>
+                                    <br>
+                                </div>
+                            </div>
+
+                            <div class="so-tab"><input id="so-tab-2" type="checkbox" name="tabs"> <label
+                                    for="so-tab-2">What
+                                    kind of grievances can I post?</label>
+                                <div class="so-tab-content">
+                                    <p>
+                                        You can post grievances related to a variety of public services, including infrastructure issues, administrative problems, financial concerns, and service delivery delays. The portal covers complaints about different government departments and institutions. It ensures that all types of public service-related issues are addressed efficiently.
+                                    </p>
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="so-tab"><input id="so-tab-6" type="checkbox" name="tabs"> <label
+                                    for="so-tab-6">Help
+                                    PDF</label>
+                                <div class="so-tab-content">
+                                    <p></p>
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="so-tab"><input id="so-tab-4" type="checkbox" name="tabs"> <label
+                                    for="so-tab-4">How to use the services provided by the Portal</label>
+                                <div class="so-tab-content">
+                                    <p>To use the services provided by the Public Grievance Portal, register on the portal, log in, and submit your grievance with relevant details. Track the status of your complaint and receive updates on the resolution process. You can also communicate directly with the concerned authorities through the portal.</p>
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="so-tab"><input id="so-tab-5" type="checkbox" name="tabs"> <label
+                                    for="so-tab-5">Language Change</label>
+                                <div class="so-tab-content">
+                                    <p>The Public Grievance Portal supports a variety of languages
+                                        like Odia, English, Hindi etc. We believe that language should never become
+                                        a barrier and stop you from using our services. You can change the language
+                                        of the website by browsing to the Navigation
+                                        Bar and clicking on language drop down list and select the language of your
+                                        preference. By Default it will be set to English.</p>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="https://www.facebook.com/CMO.Odisha" hidden>Learn More</a>
+                    </div>
+                </div>
+                <div class="card-custom p-4 mb-4">
+                    <span class="jump-link" id="contact"></span>
+                    <div class="card-block">
+                        <h5 class="card-custom-title mb-2">Contact Us</h5>
+                        <p class="text-muted">
+                            Lok Seva Bhawan, Sachivalaya Marg,
+                            Bhubaneswar, Odisha 751001
+                            <br>
+                            Phone : +91-0674-2390902 <br>
+                                    +91-0674-2535100<br>
+                            Email : cmo@nic.in<br>
+                        </p>
+                        <br>
+                        <iframe style="border-radius: 10px" allowfullscreen="" frameborder="0"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3742.7147628400153!2d85.82796457398427!3d20.27066108119562!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19a75d273e7239%3A0xba2ccfed9dca545a!2sCMO%20Odisha!5e0!3m2!1sen!2sus!4v1721291290254!5m2!1sen!2sus"
+                            width="100%" height="400"></iframe>
+                    </div>
+
+                </div>
+                <div class="card-custom p-4 mb-4">
+                    <span class="jump-link" id="about"></span>
+                    <div class="card-block">
+                        <h5 class="card-custom-title mb-2">About Us</h5>
+                        <p class="text-muted">
+                            The Public Grievance Management System of Odisha is designed to connect citizens to the government, enabling respective bodies to address the issues and difficulties faced by the public in an efficient manner, ensuring satisfaction and transparency at various levels. The primary objective of this portal is to provide a mechanism for the redressal of grievances, ensuring a smooth and hassle-free resolution process.
+                            <span id="dots"></span>
+                            <span id="more">
+                                <br><br>
+                                This initiative by the Government of Odisha allows citizens to lodge grievances related to various public services such as infrastructure, administration, finance, and more. The portal acts as a robust platform for individuals to convey their problems to the concerned authorities and stay informed about the status of their complaints.
+                                <br><br>
+
+                                Additionally, the system facilitates the Redressal Bodies at different levels (State, District, Department) to search and manage grievances lodged against their respective levels. They can post updates and actions taken against the complaints on the portal, as well as contact the complainant directly through an interactive one-on-one chat.
+
+                                The Public Grievance Management System is user-friendly, robust, and interactive, ensuring a great user experience. It serves as a crucial bridge connecting the public and the government, promoting transparency and accountability in the grievance resolution process.
+                            </span>
+
+                            <span style="cursor:pointer;color: #252766" class="" onclick="myFunction()" id="myBtn">Read
+                                more</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5 col-12">
+            <div class="card-columns" style="column-count: 1">
+                {% if not request.user.is_authenticated %}
+                <div class="card-custom p-4 mb-4 d-none d-lg-block">
+                    <span class="jump-link" id=""></span>
+                    <div class="card-block">
+                        {% if form.non_field_errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {% for error in form.non_field_errors %}
+                            <p{% if forloop.last %} class="mb-0" {% endif %}>{{ error }}</p>
+                                {% endfor %}
+                        </div>
+                        {% endif %}
+                        <form method="POST">
+                            {% csrf_token %}
+                            {% for hidden in form.hidden_fields %}
+                            {{ hidden }}
+                            {% endfor %}
+                            <div class="row justify-content-center">
+                                <h5 class="card-custom-title " style="text-transform: uppercase">Already Registered?
+                                </h5>
+                            </div>
+                            <div class="row mb-2 justify-content-center" hidden>
+                                <h6 class="text-muted">We are there for you!</h6>
+                            </div>
+                            <h5 class="mt-2" style="text-transform: uppercase; text-align: center" hidden>
+                                Login</h5>
+                            <h6 class="mb-4 mt-1 text-muted" style="text-align: center">Please login to access
+                                your
+                                dashboard</h6>
+                            <div class="input-group mb-3 px-lg-3">
+                                {% render_field form.username class="form-control" placeholder="Enter your Username" aria-label="Username" aria-describedby="basic-addon1" %}
+                                {#                                <input type="email" class="form-control" placeholder="Enter your ID"#}
+                                {#                                                     aria-label="Username"#}
+                                {#                                                     aria-describedby="basic-addon1">#}
+                            </div>
+                            <div class="input-group mb-3 px-lg-3">
+                                {% render_field form.password class="form-control" placeholder="Enter your Password" aria-label="Password" aria-describedby="basic-addon1" %}
+                                {#                                    <input type="password" class="form-control" placeholder="Enter your Password"#}
+                                {#                                           aria-label="Username"#}
+                                {#                                           aria-describedby="basic-addon1">#}
+                            </div>
+                            <div style="text-align: center" class=" mb-3 px-lg-3">
+                                <button type="submit" class="btn"
+                                    style="width: 100%;color:white!important; background-color: #252766 !important;">Login</button>
+                            </div>
+                            <div style="text-align: center" class=" px-lg-3 ">
+                                <a href="{% url 'password_reset' %}" class="text-muted">
+                                    <p>Forgot Password?</p>
+                                </a>                
+                            </div>
+                            <div style="text-align: center" class="px-lg-3">
+                                <a href="{% url 'signup' %}" class="text-muted">
+                                    <p>If you are not registered, sign up here!</p>
+                                </a>
+                            </div>
+                            {% comment %} <div style="" class="text-muted my-3 px-lg-3 ">
+                                <p>If you are a student, please note:</p>
+                                <ul class="text-muted">
+                                    <li>
+                                        If you don't have login credentials, please contact your department
+                                        staff.
+                                        You will receive them via email.
+                                    </li>
+                                </ul>
+                            </div>   {% endcomment %}
+                        </form>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            <div class="card-custom p-4 mb-4">
+                <div class="card-block">
+                    <div class="row justify-content-center">
+                        <h5 class="card-custom-title " style="text-transform: uppercase">Grievance Stats</h5>
+                    </div>
+                    <div class="row justify-content-center">
+                        <h6 class="text-muted">We do our best to serve you!</h6>
+                    </div>
+                    <canvas id="grievance-status-chart" data-url="{% url 'overall_status_chart' %}"
+                        data-tooltip-type="percent"></canvas>
+                </div>
+            </div>
+            <div class="card-custom p-4 mb-4">
+                <div class="card-block" style="max-height: 1200px; overflow-y: scroll;">
+                    <a class="twitter-timeline" href="https://x.com/CMO_Odisha">Tweets by CMO
+                        Odisha</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock page_content %}
+{% block javascript %}
+{% include 'includes/chart_scripts.html' %}
+<script src="{% static 'common/js/status_pie_loader.js' %}"></script>
+{% endblock javascript %}

@@ -1,0 +1,133 @@
+{% extends 'common/home_base.html' %}
+{% block page_title %}Sign Up{% endblock page_title %}
+{% block partial_navbar %}
+    {% include "studentg/includes/partial_navbar.html" %}
+{% endblock %}
+{% block page_content %}
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .signup-container {
+        max-width: 800px;  /* Width for the form container */
+        margin: 50px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        font-size: 14px;  /* Adjust font size to make the form fit better */
+        margin-top: 150px;
+    }
+    .signup-container h2 {
+        margin-bottom: 20px;
+        font-size: 18px;  /* Adjust title font size if needed */
+    }
+    .form-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;  /* Space between columns */
+    }
+    .form-column {
+        flex: 1;
+        min-width: calc(50% - 15px);  /* Two columns layout */
+        margin-bottom: 15px;
+    }
+    .form-column.right {
+        text-align: left;  /* Align text to the left for the right column */
+    }
+    .form-column label {
+        font-weight: bold;
+        display: block;  /* Ensure labels are block-level elements for alignment */
+    }
+    .form-column input, .form-column select {
+        width: 100%;
+        box-sizing: border-box;  /* Include padding and border in the element's total width and height */
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        color: white;
+        width: 100%;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+    
+</style>
+<div class="signup-container">
+    <h2 class="text-center">Sign Up</h2>
+    <form method="POST" action="{% url 'signup' %}">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-column">
+                <!-- Left Column -->
+                <div class="form-group">
+                    <label for="first_name">First Name</label>
+                    <input type="text" class="form-control" id="first_name" name="first_name">
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" class="form-control" id="last_name" name="last_name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="mobile">Mobile Number</label>
+                    <input type="text" class="form-control" id="mobile" name="mobile" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" id="address" name="address">
+                </div>
+                <div class="form-group">
+                    <label for="pin">PIN Code</label>
+                    <input type="text" class="form-control" id="pin" name="pin">
+                </div>
+                <div class="form-group">
+                    <label for="aadhaar">Aadhaar Number</label>
+                    <input type="text" class="form-control" id="aadhaar" name="aadhaar">
+                </div>
+            </div>
+            <div class="form-column right">
+                <!-- Right Column -->
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password1">Password</label>
+                    <input type="password" class="form-control" id="password1" name="password1" required>
+                </div>
+                <div class="form-group">
+                    <label for="password2">Confirm Password</label>
+                    <input type="password" class="form-control" id="password2" name="password2" required>
+                </div>
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select class="form-control" id="category" name="category">
+                        <option value="STU">Public only</option>
+                    </select>
+                </div>
+                    <div class="submit-group">
+                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                    </div>
+            </div>
+        </div>
+    </form>
+    <div style="text-align: center" class="px-lg-3 mt-3">
+        <a href="/#login" class="text-muted">
+            <p>Already have an account? Log in here!</p>
+        </a>
+    </div>
+</div>
+{% endblock page_content %}
