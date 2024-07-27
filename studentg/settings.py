@@ -172,8 +172,9 @@ LOGIN_URL = 'home'
 CSRF_TRUSTED_ORIGINS = [
     'https://pradiptest.bc-pl.com',
     'https://admin.pradiptest.bc-pl.com',
-    # Add other trusted origins if necessary
 ]
+
+
 
 CORS_ORIGIN_ALLOW_ALL = True
 
