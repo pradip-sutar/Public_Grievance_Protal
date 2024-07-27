@@ -112,6 +112,7 @@ DATABASES = {
     }
 }
 
+
 AUTHENTICATION_BACKENDS = [
     # 'rules.permissions.ObjectPermissionBackend',
     'django.contrib.auth.backends.ModelBackend',
@@ -167,6 +168,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGIN_URL = 'home'
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://pradiptest.bc-pl.com',
+    'https://admin.pradiptest.bc-pl.com',
+]
+
+
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
