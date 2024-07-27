@@ -102,7 +102,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'knrintegrity_Public_grievance',
-        'USER': 'knrintegrity_Public',
+        'USER': 'knrintegrity_Public_Test_2',
         'PASSWORD': 'Public@2024',
         'HOST': '103.131.196.204',   # Set to 'localhost' for local development
         'PORT': '',   # Set to '' for default port
@@ -168,6 +168,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGIN_URL = 'home'
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://pradiptest.bc-pl.com/',
+    # Add other trusted origins if necessary
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
