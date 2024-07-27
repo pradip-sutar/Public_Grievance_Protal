@@ -57,7 +57,7 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     # path('logout/', auth_views.LogoutView.as_view(next_page=reverse_lazy('home')), name="logout"),
 
-    # path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     # path('contact/', views.contact,name="contact"),
     # path('about_us/',views.about_us,name="about_us"),
 ]
