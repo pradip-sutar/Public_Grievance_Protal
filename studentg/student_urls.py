@@ -55,10 +55,6 @@ urlpatterns = [
     path('stats/status-chart/', views.overall_status_stats_chart, name="overall_status_chart"),
     path('signup/', views.signup_view, name='signup'),
     path('logout/', views.logout, name='logout'),
-<<<<<<< HEAD
-=======
-    # path('logout/', auth_views.LogoutView.as_view(next_page=reverse_lazy('home')), name="logout"),
->>>>>>> 1f9a8923a993881b949da205f418ee89f0268420
 
     path('admin/', admin.site.urls),
     # path('contact/', views.contact,name="contact"),
