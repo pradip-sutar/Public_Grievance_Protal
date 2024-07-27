@@ -27,7 +27,7 @@ SECRET_KEY = 'uko7f6k*v2ogm7g154nu8o0=z#!6crb1p&)x57g9lt4&^lvzsp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*','pradiptest.bc-pl.com/']
+ALLOWED_HOSTS = ['*','pradiptest.bc-pl.com']
 
 
 # Application definition
@@ -61,7 +61,7 @@ MIDDLEWARE = [
     'django_hosts.middleware.HostsResponseMiddleware',
 ]
 
-PARENT_HOST = 'https://pradiptest.bc-pl.com/'
+PARENT_HOST = 'localhost:8000'
 ROOT_HOSTCONF = 'studentg.hosts'
 DEFAULT_HOST = 'www'
 
