@@ -27,7 +27,11 @@ SECRET_KEY = 'uko7f6k*v2ogm7g154nu8o0=z#!6crb1p&)x57g9lt4&^lvzsp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+<<<<<<< HEAD
 ALLOWED_HOSTS = ['*', 'vichaar.bc-pl.com', 'redressal.vichaar.bc-pl.com']
+=======
+ALLOWED_HOSTS = ['*', 'pradiptest.bc-pl.com', 'admin.pradiptest.bc-pl.com']
+>>>>>>> a9d675937c776d026169e9fb7e5ee6450f7af104
 
 
 # Application definition
@@ -61,7 +65,11 @@ MIDDLEWARE = [
     'django_hosts.middleware.HostsResponseMiddleware',
 ]
 
+<<<<<<< HEAD
 PARENT_HOST = 'vichaar.bc-pl.com'
+=======
+PARENT_HOST = 'pradiptest.bc-pl.com'
+>>>>>>> a9d675937c776d026169e9fb7e5ee6450f7af104
 ROOT_HOSTCONF = 'studentg.hosts'
 DEFAULT_HOST = 'www'
 
@@ -91,6 +99,7 @@ WSGI_APPLICATION = 'studentg.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+<<<<<<< HEAD
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -112,6 +121,29 @@ DATABASES = {
 #     }
 # }
 
+=======
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'knrintegrity_Public_grievance',
+        'USER': 'knrintegrity_Public_Test_2',
+        'PASSWORD': 'Public@2024',
+        'HOST': '103.131.196.204',   # Set to 'localhost' for local development
+        'PORT': '',   # Set to '' for default port
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
+    }
+}
+
+>>>>>>> a9d675937c776d026169e9fb7e5ee6450f7af104
 
 AUTHENTICATION_BACKENDS = [
     # 'rules.permissions.ObjectPermissionBackend',
@@ -170,10 +202,15 @@ LOGIN_REDIRECT_URL = 'dashboard'
 LOGIN_URL = 'home'
 
 CSRF_TRUSTED_ORIGINS = [
+<<<<<<< HEAD
     'https://vichaar.bc-pl.com',
     'https://vichaar.redressal.bc-pl.com',
     'https://admin.pradiptest.bc-pl.com',
     'https://bc-pl.com',
+=======
+    'https://pradiptest.bc-pl.com',
+    'https://admin.pradiptest.bc-pl.com',
+>>>>>>> a9d675937c776d026169e9fb7e5ee6450f7af104
 ]
 
 
