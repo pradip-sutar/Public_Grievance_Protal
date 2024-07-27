@@ -27,7 +27,7 @@ SECRET_KEY = 'uko7f6k*v2ogm7g154nu8o0=z#!6crb1p&)x57g9lt4&^lvzsp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*', 'pradiptest.bc-pl.com']
+ALLOWED_HOSTS = ['*', 'pradiptest.bc-pl.com', 'admin.pradiptest.bc-pl.com']
 
 
 # Application definition
@@ -171,6 +171,7 @@ LOGIN_URL = 'home'
 
 CSRF_TRUSTED_ORIGINS = [
     'https://pradiptest.bc-pl.com',
+    'https://admin.pradiptest.bc-pl.com',
     # Add other trusted origins if necessary
 ]
 
