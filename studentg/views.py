@@ -16,10 +16,14 @@ from .forms import NewGrievanceForm, NewReplyForm, RatingForm
 from .models import *
 from .filters import StudentGrievanceFilter, FilteredListView
 from redressal.helpers import get_redressal_body_members
-from django.contrib.auth import login
+from django.contrib.auth import login,logout as auth_logout
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+
+def logout(request):
+    auth_logout(request)
+    return redirect('home')
 
 def signup_view(request):
     if request.method == 'POST':
