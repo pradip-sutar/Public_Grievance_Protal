@@ -10,7 +10,7 @@
     <title>
         {% block page_title %}Dashboard{% endblock page_title %}
     </title>
-    <link rel="icon" sizes="76x76" href="{% static 'assets/img/Logos/govt-logo-trans.png' %}">
+    <link rel="icon" sizes="76x76" href="{%  static 'assets/img/Logos/odishagovt-logo.png'  %}">
 
     <!----Custom Files--- -->
     <link href="{% static 'assets/css/custom-css/index.css' %}" rel="stylesheet"/>
@@ -79,18 +79,8 @@
     text-indent: 1px;
     text-overflow: ''; border: none; cursor: pointer; background-color: lightgrey">
                         <option class="lang notranslate" value="en|en">English</option>
-                        <option class="lang notranslate" value="en|te">తెలుగు</option>
+                        <option class="lang notranslate" value="en|or">ଓଡ଼ିଆ</option>
                         <option class="lang notranslate" value="en|hi">हिन्दी</option>
-                        <option class="lang notranslate" value="en|mr">मराठी</option>
-                        <option class="lang notranslate" value="en|ur">اردو</option>
-                        <option class="lang notranslate" value="en|fa">فارسی</option>
-                        <option class="lang notranslate" value="en|bn">বাংলা</option>
-                        <option class="lang notranslate" value="en|gu">ગુજરાતી</option>
-                        <option class="lang notranslate" value="en|kn">ಕನ್ನಡ</option>
-                        <option class="lang notranslate" value="en|ne">नेपाली</option>
-                        <option class="lang notranslate" value="en|pa">ਪੰਜਾਬੀ</option>
-                        <option class="lang notranslate" value="en|ta">தமிழ்</option>
-                        <option class="lang notranslate" value="en|ar">ﻋﹷﺮﹶﺑﹻﻲ</option>
                     </select>
                     &nbsp;&nbsp;
                     <img src="{{ request.user|gravatar }}" class="profile-pic-dashboard" height="50">

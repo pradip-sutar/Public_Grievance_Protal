@@ -389,6 +389,51 @@ def charts(request):
     }
     return render(request, 'redressal/view_charts.html', context)
 
+# from django.utils.timezone import datetime, timedelta
+# from .models import Grievance
+# from django.db.models import Count
+# from .forms import SelectSubCategoryForm  # Assuming this is the form being used
+
+# def charts(request):
+#     redressal_body = request.user.get_redressal_body()
+    
+#     # Querying the Grievance model based on the redressal body
+#     base_queryset = Grievance.objects.filter(redressal_body=redressal_body)
+    
+#     total_count = base_queryset.count()
+#     new_last_day = base_queryset.filter(date__range=[datetime.today() - timedelta(days=1), datetime.today()]).count()
+#     new_count = base_queryset.filter(status=Grievance.REVIEW).count()
+    
+#     # TODO: Replace below with distinct query in Production server
+#     no_days = base_queryset.values('date').annotate(date_count=Count('id')).count()
+    
+#     if no_days:
+#         avg_per_day = int(round(total_count / no_days))
+#     else:
+#         avg_per_day = 0
+    
+#     pending_count = base_queryset.filter(status=Grievance.PENDING).count()
+#     pending_inc_count = base_queryset.filter(status=Grievance.PENDING, date__range=[datetime.today() - timedelta(days=1), datetime.today()]).count()
+#     resolved_count = base_queryset.filter(status=Grievance.RESOLVED).count()
+#     resolved_inc_count = base_queryset.filter(status=Grievance.RESOLVED, date__range=[datetime.today() - timedelta(days=1), datetime.today()]).count()
+    
+#     subcategory_select = SelectSubCategoryForm(redressal_body=redressal_body)
+    
+#     context = {
+#         'total_count': total_count,
+#         'new_last_day': new_last_day,
+#         'new_count': new_count,
+#         'avg_per_day': avg_per_day,
+#         'pending_count': pending_count,
+#         'pending_inc_count': pending_inc_count,
+#         'resolved_count': resolved_count,
+#         'resolved_inc_count': resolved_inc_count,
+#         'subcategory_select': subcategory_select,
+#     }
+    
+#     return render(request, 'redressal/view_charts.html', context)
+
+
 
 def status_chart_helper(redressal_body, status_filtered):
     labels = []

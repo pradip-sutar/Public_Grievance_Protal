@@ -107,3 +107,22 @@ class Department(models.Model):
 
     def __str__(self):
         return self.redressal_body.name
+
+# from django.db import models
+
+# class Grievance(models.Model):
+#     PENDING = 'pending'
+#     REVIEW = 'review'
+#     RESOLVED = 'resolved'
+#     STATUS_CHOICES = [
+#         (PENDING, 'Pending'),
+#         (REVIEW, 'Review'),
+#         (RESOLVED, 'Resolved'),
+#     ]
+    
+#     id = models.AutoField(primary_key=True)
+#     priority = models.CharField(max_length=255)
+#     redressal_body = models.ForeignKey(RedressalBody, on_delete=models.CASCADE)  # Assuming a ForeignKey to RedressalBody model
+#     sub_type = models.CharField(max_length=255)
+#     date = models.DateTimeField(auto_now_add=True)
+#     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default=PENDING)
