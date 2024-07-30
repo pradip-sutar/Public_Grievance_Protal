@@ -27,7 +27,7 @@ SECRET_KEY = 'uko7f6k*v2ogm7g154nu8o0=z#!6crb1p&)x57g9lt4&^lvzsp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*', 'vichaar.bc-pl.com', 'redressal.vichaar.bc-pl.com']
+ALLOWED_HOSTS = ['*', 'vichaarlab.in', 'redressal.vichaarlab.in']
 
 
 # Application definition
@@ -61,7 +61,7 @@ MIDDLEWARE = [
     'django_hosts.middleware.HostsResponseMiddleware',
 ]
 
-PARENT_HOST = 'localhost:8000'
+PARENT_HOST = 'vichaarlab.in'
 ROOT_HOSTCONF = 'studentg.hosts'
 DEFAULT_HOST = 'www'
 
@@ -174,6 +174,7 @@ CSRF_TRUSTED_ORIGINS = [
     'https://vichaar.redressal.bc-pl.com',
     'https://admin.pradiptest.bc-pl.com',
     'https://bc-pl.com',
+    'https://vichaarlab.in'
 ]
 
 
