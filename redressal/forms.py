@@ -32,4 +32,4 @@ class SelectSubCategoryForm(forms.Form):
     def __init__(self, *args, **kwargs):
         redressal_body = kwargs.pop('redressal_body')
         super(SelectSubCategoryForm, self).__init__(*args, **kwargs)
-        self.fields['sub_category'].queryset = SubCategory.objects.filter(redressal_body=redressal_body).exclude(grievance=None)
+        self.fields['sub_category'].queryset = SubCategory.objects.filter(redressal_body=redressal_body)

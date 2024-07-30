@@ -108,7 +108,7 @@ class Department(models.Model):
     def __str__(self):
         return self.redressal_body.name
 
-# from django.db import models
+
 
 # class Grievance(models.Model):
 #     PENDING = 'pending'
