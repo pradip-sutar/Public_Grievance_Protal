@@ -84,9 +84,9 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-7 col-12">
-                <div class="card-columns" style="column-count: 1">
-                    <div class="card-custom p-4 mb-4  d-block d-lg-none    ">
+            <div class="col-md-6">
+                <div class="card" style="column-count: 1">
+                    <div class="card-custom p-4 mb-6  d-block d-lg-none    ">
                         <div class="card-block">
                             <div class="row justify-content-center">
                                 {% if not request.user.is_authenticated %}
@@ -117,7 +117,7 @@
                                 </div>
                             {% else %}
                                 <div class="row justify-content-center">
-                                    <div class="col" style="text-align: right">
+                                    <div class="col-md-6" style="text-align: right">
                                         <a href="{% url 'dashboard' %}">
                                             <button class="px-3 py-2"
                                                     style=" border-radius: 5px; border: none; background-color: #252766; color: white">
@@ -343,7 +343,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-5 col-12">
+            <div class="col-lg-6 col-12">
                 <div class="card-columns" style="column-count: 1">
                     {% if not request.user.is_authenticated %}
                         <div class="card-custom p-4 mb-4 d-none d-lg-block">
@@ -362,39 +362,24 @@
                                         {{ hidden }}
                                     {% endfor %}
                                     <div class="row justify-content-center">
-                                        <h5 class="card-custom-title " style=" text-transform: uppercase">Already
-                                            Registered?
-                                        </h5>
+                                        <h5 class="card-custom-title text-uppercase">Already Registered?</h5>
                                     </div>
-                                    <h6 class="mb-4 mt-1 text-muted" style="text-align: center">Please login to access
-                                        your
-                                        dashboard</h6>
+                                    <h6 class="mb-4 mt-1 text-muted text-center">Please login to access your dashboard</h6>
                                     <div class="input-group mb-3 px-lg-3">
                                         {% render_field form.username class="form-control" placeholder="Enter your Username" aria-label="Username" aria-describedby="basic-addon1" %}
                                     </div>
                                     <div class="input-group mb-3 px-lg-3">
                                         {% render_field form.password class="form-control" placeholder="Enter your Password" aria-label="Password" aria-describedby="basic-addon1" %}
                                     </div>
-                                    <div style="text-align: center" class=" mb-3 px-lg-3">
-                                        <button type="submit" class="btn"
-                                                style="width: 100%;color:white !important;background-color: #252677 !important">
+                                    <div class="text-center mb-3 px-lg-3">
+                                        <button type="submit" class="btn" style="width: 100%; color: white !important; background-color: #252677 !important;">
                                             Login
                                         </button>
                                     </div>
-                                    <div style="text-align: center" class=" px-lg-3 ">
-                                        <a href="{% url 'password_reset' %}" class>
+                                    <div class="text-center px-lg-3">
+                                        <a href="{% url 'password_reset' %}">
                                             <p>Forgot Password?</p>
                                         </a>
-                                    </div>
-                                    <div style="" class="text-muted my-3 px-lg-3 ">
-                                        <p>If you are a student, please note:</p>
-                                        <ul class="text-muted">
-                                            <li>
-                                                If you don't have login credentials, please contact your department
-                                                staff.
-                                                You will receive them via email.
-                                            </li>
-                                        </ul>
                                     </div>
                                 </form>
                             </div>
@@ -404,25 +389,22 @@
                 <div class="card-custom p-4 mb-4">
                     <div class="card-block">
                         <div class="row justify-content-center">
-                            <h5 class="card-custom-title " style="text-transform: uppercase">Grievance Stats</h5>
+                            <h5 class="card-custom-title text-uppercase">Grievance Stats</h5>
                         </div>
                         <div class="row justify-content-center">
                             <h6 class="text-muted">We do our best to serve you!</h6>
                         </div>
-                        <canvas id="grievance-status-chart" data-url="{% url 'overall_status_chart' %}"
-                                data-tooltip-type="percent"></canvas>
+                        <canvas id="grievance-status-chart" data-url="{% url 'overall_status_chart' %}" data-tooltip-type="percent"></canvas>
                     </div>
                 </div>
                 <div class="card-custom p-4 mb-4">
                     <div class="card-block" style="max-height: 1200px; overflow-y: scroll;">
-                        <a class="twitter-timeline" href="https://x.com/CMO_Odisha">Tweets by CMO
-                            Odisha</a>
+                        <a class="twitter-timeline" href="https://x.com/CMO_Odisha">Tweets by CMO Odisha</a>
                         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+            
 {% endblock page_content %}
 {% block javascript %}
     {% include 'includes/chart_scripts.html' %}
