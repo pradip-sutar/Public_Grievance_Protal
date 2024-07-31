@@ -171,7 +171,7 @@ LOGIN_URL = 'home'
 
 CSRF_TRUSTED_ORIGINS = [
     
-    'https://vichaarlab.in'
+    'https://vichaarlab.in',
     'https://redressal.vichaarlab.in'
 ]
 
