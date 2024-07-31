@@ -11,14 +11,14 @@
                 <div class="card-custom mt-2 mt-lg-0 help-card">
                     <div class="row justify-content-center align-items-center">
                         <div class="col">
-                            <h5 class="my-3 card-custom-title" style="">Enter Student Details
+                            <h5 class="my-3 card-custom-title" style="">Enter Public Details
                             </h5>
                         </div>
                     </div>
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="form-group">
-                            <label for="{{ form.file.id_for_label }}"> Upload CSV File or Spreadsheet containing student details</label>
+                            <label for="{{ form.file.id_for_label }}"> Upload CSV File or Spreadsheet containing Public details</label>
                             {% render_field form.file class="form-control-file" %}
                             <p class="text-muted mt-2">Please refer this <a href="{% static 'redressal/Student Details.csv' %}">Link</a> for format.</p>
                         </div>

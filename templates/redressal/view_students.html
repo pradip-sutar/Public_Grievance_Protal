@@ -1,7 +1,7 @@
 {% extends 'redressal/dashboard_base.html' %}
 {% load static %}
-{% block page_title %}List of Students{% endblock page_title %}
-{% block page_heading %}Students{% endblock page_heading %}
+{% block page_title %}List of Public{% endblock page_title %}
+{% block page_heading %}Public{% endblock page_heading %}
 {% block page_content %}
     <div class="container mt-3 pl-lg-5">
         <div class="row justify-content-center">
@@ -10,7 +10,7 @@
                 <div class="card-custom mt-2 mt-lg-0 help-card">
                     <div class="row justify-content-between align-items-center">
                         <div class="col">
-                            <h5 class="my-3 card-custom-title" style="">Registered Students</h5>
+                            <h5 class="my-3 card-custom-title" style="">Registered Public</h5>
                         </div>
                         <table class="table step3-table filter-this-table">
                             <thead>
@@ -95,7 +95,7 @@
                                                 <td colspan="3">
                                                     <div style="" class=" mb-2 ">
                                                         <a href="{% url 'delete_member' pk=student.user.pk %}">
-                                                            <button class="btn btn-danger mt-1">Delete Student</button>
+                                                            <button class="btn btn-danger mt-1">Delete Public</button>
                                                         </a>
                                                     </div>
                                                 </td>
@@ -114,7 +114,7 @@
                 <div class="card-custom mt-2 mt-lg-0 help-card">
                     <div class="row justify-content-between align-items-center">
                         <div class="col">
-                            <h5 class="my-3 card-custom-title" style="">Invited Student</h5>
+                            <h5 class="my-3 card-custom-title" style="">Invited Public</h5>
                         </div>
                         <div style="text-align: center" class=" mb-2 mr-5">
                             <a href="{% url 'add_student' %}">

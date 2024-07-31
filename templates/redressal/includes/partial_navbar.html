@@ -86,7 +86,7 @@
                                 {% if request.user.designation == request.user.DEP_HEAD or request.user.designation == request.user.DEPARTMENT %}
                                     <a class="dropdown-item" href="{% url 'view_students' %}"><i style="font-size:large"
                                                                                                  class="fa fa-graduation-cap"
-                                                                                                 aria-hidden="true"></i>&nbsp;&nbsp;Students</a>
+                                                                                                 aria-hidden="true"></i>&nbsp;&nbsp;Public</a>
                                 {% endif %}
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{% url 'password_change' %}"><i style="font-size:large"

@@ -61,7 +61,7 @@ MIDDLEWARE = [
     'django_hosts.middleware.HostsResponseMiddleware',
 ]
 
-PARENT_HOST = 'vichaarlab.in'
+PARENT_HOST = 'localhost:8000'  #vichaarlab.in
 ROOT_HOSTCONF = 'studentg.hosts'
 DEFAULT_HOST = 'www'
 
