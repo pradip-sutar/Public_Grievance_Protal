@@ -31,9 +31,10 @@ urlpatterns = [
 
     #     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name="login"),
 
-    path('logout/', auth_views.LogoutView.as_view(next_page=reverse_lazy('home')), name="logout"),
+#     path('logout/', auth_views.LogoutView.as_view(next_page=reverse_lazy('home')), name="logout"),
 
     path('reset/', include(reset_patterns)),
+    path('logout/', views.logout, name='logout'),
 
 
     # path('settings/password/', include(change_password_patterns)),

@@ -61,7 +61,7 @@ MIDDLEWARE = [
     'django_hosts.middleware.HostsResponseMiddleware',
 ]
 
-PARENT_HOST = 'vichaarlab.in'
+PARENT_HOST = 'vichaarlab.in'  #vichaarlab.in
 ROOT_HOSTCONF = 'studentg.hosts'
 DEFAULT_HOST = 'www'
 
@@ -170,9 +170,15 @@ LOGIN_REDIRECT_URL = 'dashboard'
 LOGIN_URL = 'home'
 
 CSRF_TRUSTED_ORIGINS = [
+<<<<<<< HEAD
   
     'https://vichaarlab.in'
     'https://admingrievance.vichaarlab.in'
+=======
+    
+    'https://vichaarlab.in',
+    'https://redressal.vichaarlab.in'
+>>>>>>> d52edc79aa0007762ec008f3d779e06fa1a3a6ad
 ]
 
 

@@ -23,13 +23,13 @@ import json
 from django.shortcuts import render, reverse, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
-
 import pandas as pd
 from django.utils import timezone
 
 # Charts
 from django.db.models import Count, Avg, F
 # from redressal.models import Grievance
+
 
 
 class HomeView(LoginView):

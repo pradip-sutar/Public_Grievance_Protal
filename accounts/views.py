@@ -12,6 +12,12 @@ from django.utils import timezone
 import datetime
 
 
+
+from django.contrib.auth import logout as auth_logout
+def logout(request):
+    auth_logout(request)
+    return redirect('home')
+
 # Create your views here.
 class SignupView(View):
     template_name = None
