@@ -27,7 +27,7 @@ SECRET_KEY = 'uko7f6k*v2ogm7g154nu8o0=z#!6crb1p&)x57g9lt4&^lvzsp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*', 'vichaarlab.in', 'redressal.vichaarlab.in']
+ALLOWED_HOSTS = ['*', 'vichaarlab.in', 'admingrievance.vichaarlab.in']
 
 
 # Application definition
@@ -170,12 +170,9 @@ LOGIN_REDIRECT_URL = 'dashboard'
 LOGIN_URL = 'home'
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://vichaar.bc-pl.com',
-    'https://vichaar.redressal.bc-pl.com',
-    'https://admin.pradiptest.bc-pl.com',
-    'https://bc-pl.com',
+  
     'https://vichaarlab.in'
-    'https://redressal.vichaarlab.in'
+    'https://admingrievance.vichaarlab.in'
 ]
 
 
