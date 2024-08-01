@@ -58,8 +58,8 @@
                     <div class="form-group mb-3">
                         <div class="row">
                             <div class="col">
-                                <label for="sub_district">Sub-District</label>
-                                <select id="sub_district" class="form-control" name="sub_district">
+                                <label for="block">Block</label>
+                                <select id="block" class="form-control" name="block">
                                     <!-- Options will be loaded dynamically -->
                                 </select>
                             </div>
@@ -133,7 +133,7 @@
             $('#state').change(function() {
                 var selectedState = $(this).val();
                 $('#district').empty();
-                $('#sub_district').empty();
+                $('#block').empty();
                 $('#village').empty();
                 if (selectedState === "Odisha") {
                     $('#district').append('<option value="">Select District</option>');
@@ -143,23 +143,23 @@
                 }
             });
             
-            // Populate sub-district dropdown based on district selection
+            // Populate block dropdown based on district selection
             $('#district').change(function() {
                 var selectedDistrict = $(this).val();
-                $('#sub_district').empty();
+                $('#block').empty();
                 $('#village').empty();
                 $.each(data.districts, function(index, district) {
                     if (district.district === selectedDistrict) {
-                        $('#sub_district').append('<option value="">Select Sub-District</option>');
+                        $('#block').append('<option value="">Select block</option>');
                         $.each(district.subDistricts, function(index, subDistrict) {
-                            $('#sub_district').append('<option value="' + subDistrict.subDistrict + '">' + subDistrict.subDistrict + '</option>');
+                            $('#block').append('<option value="' + subDistrict.subDistrict + '">' + subDistrict.subDistrict + '</option>');
                         });
                     }
                 });
             });
             
-            // Populate village dropdown based on sub-district selection
-            $('#sub_district').change(function() {
+            // Populate village dropdown based on block selection
+            $('#block').change(function() {
                 var selectedSubDistrict = $(this).val();
                 $('#village').empty();
                 $.each(data.districts, function(index, district) {

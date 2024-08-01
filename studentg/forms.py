@@ -7,7 +7,7 @@ from better_profanity import profanity
 class NewGrievanceForm(forms.ModelForm):
     class Meta:
         model = Grievance
-        fields = ['category', 'sub_category', 'subject', 'message', 'image']
+        fields = ['category', 'sub_category', 'subject', 'message', 'image','state','district','block','village']
         labels = {
             'category': 'Department',
             'sub_category': 'Sub-department',
