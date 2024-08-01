@@ -27,7 +27,7 @@ SECRET_KEY = 'uko7f6k*v2ogm7g154nu8o0=z#!6crb1p&)x57g9lt4&^lvzsp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*', 'vichaarlab.in', 'admingrievance.vichaarlab.in']
+ALLOWED_HOSTS = ['*', 'publicgrievance.vichaarlab.in', 'admingrievance.vichaarlab.in']
 
 
 # Application definition
@@ -171,7 +171,7 @@ LOGIN_URL = 'home'
 
 CSRF_TRUSTED_ORIGINS = [
   
-    'https://vichaarlab.in'
+    'https://publicgrievance.vichaarlab.in',
     'https://admingrievance.vichaarlab.in'
 ]
 
