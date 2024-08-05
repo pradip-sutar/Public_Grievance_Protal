@@ -77,7 +77,7 @@
                 <div class="card-custom mt-2 mt-lg-0 help-card">
                     <div class="row justify-content-between align-items-center">
                         <div class=" col ">
-                            <h5 class="my-3 card-custom-title" style="">All Grievances</h5>
+                            <h5 class="my-3 card-custom-title" style="text-align: left;">All Grievances</h5>
                         </div>
                         {#                    TODO#}
                         <div style="text-align: right" class=" col">
@@ -93,7 +93,7 @@
                             </a>
                         </div>
 
-                        <table class="table step3-table filter-this-table">
+                        <table class="table step3-table filter-this-table" style="text-align: left;">
                             {#                        <thead hidden>#}
                             {#                        <tr>#}
                             {#                            <th scope="col"><h6>Subject</h6></th>#}
@@ -129,7 +129,7 @@
                 {#                <div class="card-custom mt-4 help-card" hidden>#}
                 {#                    <div class="row justify-content-between align-items-center">#}
                 {#                        <div class="col">#}
-                {#                            <h5 class="my-3 card-custom-title" style="">Grievances Received(D,I,U,A)</h5>#}
+                {#                            <h5 class="my-3 card-custom-title" style="text-align: left;">Grievances Received(D,I,U,A)</h5>#}
                 {#                        </div>#}
                 {#                        <table class="table step3-table filter-this-table">#}
                 {#                            <thead>#}
@@ -176,7 +176,7 @@
                 {#                                            </td>#}
                 {#                                            <td colspan="3">#}
                 {#                                                <div class="initiative-description">#}
-                {#                                                    <p class="text-muted" align="left">1</p>#}
+                {#                                                    <p class="text-muted" style="text-align: left;">1</p>#}
                 {#                                                </div>#}
                 {#                                            </td>#}
                 {#                                        </tr>#}
@@ -186,7 +186,7 @@
                 {#                                            </td>#}
                 {#                                            <td colspan="3">#}
                 {#                                                <div class="initiative-description">#}
-                {#                                                    <p class="text-muted" align="left">We need volunteers to deliver the#}
+                {#                                                    <p class="text-muted" style="text-align: left;">We need volunteers to deliver the#}
                 {#                                                        clothes from#}
                 {#                                                        the#}
                 {#                                                        main#}
@@ -201,7 +201,7 @@
                 {#                                            </td>#}
                 {#                                            <td colspan="3">#}
                 {#                                                <div class="initiative-description">#}
-                {#                                                    <p class="text-muted" align="left">NGO#}
+                {#                                                    <p class="text-muted" style="text-align: left;">NGO#}
                 {#                                                    </p>#}
                 {#                                                </div>#}
                 {#                                            </td>#}
@@ -212,7 +212,7 @@
                 {#                                            </td>#}
                 {#                                            <td colspan="2">#}
                 {#                                                <div class="initiative-description">#}
-                {#                                                    <p class="text-muted" align="left">12#}
+                {#                                                    <p class="text-muted" style="text-align:left;">12#}
                 {#                                                    </p>#}
                 {#                                                </div>#}
                 {#                                            </td>#}
@@ -223,7 +223,7 @@
                 {#                                            </td>#}
                 {#                                            <td colspan="2">#}
                 {#                                                <div class="initiative-description">#}
-                {#                                                    <p class="text-muted" align="left">6#}
+                {#                                                    <p class="text-muted" style="text-align:left;">6#}
                 {#                                                    </p>#}
                 {#                                                </div>#}
                 {#                                            </td>#}
@@ -257,7 +257,7 @@
                 {#                                                <p class="">Action</p>#}
                 {#                                            </td>#}
                 {#                                            <td colspan="3">#}
-                {#                                                <div style="" class=" mb-2 ">#}
+                {#                                                <div style="text-align: left;" class=" mb-2 ">#}
                 {#                                                    <a href="old_files/volunteer_applied_tasks.html">#}
                 {#                                                        <button class="btn btn-success mt-1">Apply</button>#}
                 {#                                                    </a>#}
@@ -283,14 +283,14 @@
             <div class="col-lg-4 col-12 px-lg-3 order-lg-1 order-2">
                 <div class="card-custom mt-2 mt-lg-0 help-card">
                     <div class="row justify-content-between align-items-center">
-                        <div class="col">
-                            <h5 class="my-3 card-custom-title" style="">Notifications</h5>
+                        <div class="col" style="text-align: left;">
+                            <h5 class="my-3 card-custom-title" style="text-align: left;">Notifications</h5>
                         </div>
                         <table class="table filter-this-table">
                             <tbody>
                             {% for notification in notifications %}
                             <tr>
-                                <td style="vertical-align: middle" colspan="1">
+                                <td style="text-align: left;" colspan="1">
                                     <h6 class="my-2">{{ notification.date_time }}</h6>
                                     <p>Action on Grievance No. <a href="{% url 'view_grievance' notification.grievance.token %}"><strong>{{ notification.grievance.token }}<strong></a></p>
                                 </td>
@@ -303,7 +303,7 @@
                 <div class="card-custom mt-3 help-card">
                     <div class="row justify-content-center align-items-center">
                         <div class="col">
-                            <h5 class="my-3 card-custom-title" style="">Stats</h5>
+                            <h5 class="my-3 card-custom-title" style="text-align: left;">Stats</h5>
                         </div>
                         <canvas id="grievance-status-chart" data-url="{% url 'status_stats_chart' %}"></canvas>
                     </div>

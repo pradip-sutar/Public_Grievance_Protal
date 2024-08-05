@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-6 col-12 px-lg-3 order-lg-1 order-2">
 
-            <div class="card-custom mt-2 mt-lg-0 help-card">
+            <div class="card-custom mt-2 mt-lg-0 help-card" style="text-align: left;">
                 <div class="row justify-content-between align-items-center">
                     <div class="col">
                         <h5 class="my-3 card-custom-title" style="">Basic Details
@@ -106,7 +106,7 @@
                           style="background-color:#252766">{{ request.user.get_designation_display }}</span>
                 </div>
             </div>
-            <div class="card-custom mt-2 help-card d-none d-lg-block">
+            <div class="card-custom mt-2 help-card d-none d-lg-block" style="text-align: left;">
                 {% if form.non_field_errors %}
                     <div class="alert alert-danger" role="alert">
                         {% for error in form.non_field_errors %}
